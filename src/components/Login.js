@@ -7,6 +7,10 @@ const Login = () => {
     const toggleSignInForm = () => {
         setIsSignInForm(!isSignInForm);
     }
+
+    const handleButtonClick = () => {
+        
+    }
   return (
     <div>
         <Header/>
@@ -20,7 +24,7 @@ const Login = () => {
             )} 
             <input className='p-2 my-4 w-full bg-gray-700' type="text" placeholder='Email' />
             <input className='p-2 my-4 w-full bg-gray-700' type="password" placeholder='Password'  />
-            <button className='p-4 my-4 bg-red-600 w-full rounded-lg'>{isSignInForm ? "Sign In" : "Sign Up"}</button>
+            <button className='p-4 my-4 bg-red-600 w-full rounded-lg' onClick={handleButtonClick}>{isSignInForm ? "Sign In" : "Sign Up"}</button>
             <p className='py-4 cursor-pointer' onClick={toggleSignInForm}>{ isSignInForm ? "New to Netflix? Sign Up Now" : "Already Registered? Sign In Now"}</p>
         </form>
     </div>
