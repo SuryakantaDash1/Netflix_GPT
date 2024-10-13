@@ -5,6 +5,7 @@ import { checkValidData } from '../utils/Validation';
 
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState(true);
+    const [errorMessage, setErrorMessage] = useState(null);
     const email = useRef(null);
     const password = useRef(null);
 
@@ -13,7 +14,8 @@ const Login = () => {
     }
 
     const handleButtonClick = () => {
-        checkValidData(email.current.value, password.current.value);
+        const message = checkValidData(email.current.value, password.current.value);
+        setErrorMessage(message);
     }
   return (
     <div>
@@ -28,6 +30,7 @@ const Login = () => {
             )} 
             <input className='p-2 my-4 w-full bg-gray-700' ref={email} type="text" placeholder='Email' />
             <input className='p-2 my-4 w-full bg-gray-700' ref={password} type="password" placeholder='Password'  />
+            <p className='text-red-500 font-bold text-lg py-2'>{errorMessage}</p>
             <button className='p-4 my-4 bg-red-600 w-full rounded-lg' onClick={handleButtonClick}>{isSignInForm ? "Sign In" : "Sign Up"}</button>
             <p className='py-4 cursor-pointer' onClick={toggleSignInForm}>{ isSignInForm ? "New to Netflix? Sign Up Now" : "Already Registered? Sign In Now"}</p>
         </form>
