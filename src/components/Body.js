@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
-import { addUser } from '../utils/userSlice';
+import { addUser, removeUser } from '../utils/userSlice';
 
 const Body = () => {
     const dispatch = useDispatch();
@@ -30,8 +30,7 @@ const Body = () => {
               const {uid, email, displayName} = user;
               dispatch(addUser({uid: uid, email: email, displayName: displayName}));
             } else {
-              // User is signed out
-              // ...
+              dispatch(removeUser());
             }
           });
     }, []);
