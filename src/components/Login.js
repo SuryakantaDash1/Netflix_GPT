@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
+import { addUser } from '../utils/userSlice';
 
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState(true);
@@ -38,6 +39,12 @@ const Login = () => {
             updateProfile(user, {
                 displayName: name.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
               }).then(() => {
+                const {uid, email, displayName} = user;
+                dispatch(addUser({
+                    uid: uid, 
+                    email: email,
+                    displayName: displayName
+                }));
                 navigate('/browse');
               }).catch((error) => {
                 setErrorMessage(error.message);
